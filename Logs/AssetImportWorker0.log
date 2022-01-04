@@ -20,6 +20,7 @@ Successfully changed project path to: D:/Documentos/Proyectos Unity/Junior-progr
 D:/Documentos/Proyectos Unity/Junior-programmer-pathway-Final-Project
 Using Asset Import Pipeline V2.
 Refreshing native plugins compatible for Editor in 35.04 ms, found 2 plugins.
+
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.11f1 (99c7afb366b3)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Resources/UnitySubsystems
@@ -62,10 +63,30 @@ Platform modules already initialized, skipping
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
 Refreshing native plugins compatible for Editor in 0.31 ms, found 2 plugins.
+=======
+Registered in 0.004001 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 33.47 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.554 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005630 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.47 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.150 seconds
+Platform modules already initialized, skipping
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1386 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 64.7 MB.
 System memory in use after: 64.8 MB.
+
 
 Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 1820.
 Total: 1.925300 ms (FindLiveObjects: 0.153400 ms CreateObjectMapping: 0.032900 ms MarkObjects: 1.658300 ms  DeleteObjects: 0.079800 ms)
@@ -76,4 +97,3 @@ Received Import Request.
   artifactKey: Guid(c0dfd8a79d5e0c141a4847f6e236417b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scenes/TittleScreen.unity using Guid(c0dfd8a79d5e0c141a4847f6e236417b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e09a44313c180ad79d3fb3a09c4bc5f1') in 0.014023 seconds
   Import took 0.016117 seconds .
-
