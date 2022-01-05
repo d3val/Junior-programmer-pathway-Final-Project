@@ -16,35 +16,44 @@ public class Unit : MonoBehaviour
 
     protected void Shoot()
     {
+        AimTarget();
+
         Instantiate(projectile, transform.position, transform.rotation);
     }
 
     private void Update()
     {
         if (target != null && !shooting)
+        {
             StartCoroutine(ShootRepeatily());
+            shooting = true;
+        }
+    }
+
+    private void AimTarget()
+    {
+        if (target != null)
+        {
+            transform.LookAt(target.transform);
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        // Establecer el objetivo en cuanto entre al area de vision
 
-        Debug.Log(other.tag);
         if (other.CompareTag("Enemy"))
         {
             if (target == null)
             {
                 target = other.GetComponent<Enemy>();
-                shooting = true;
             }
         }
     }
 
     IEnumerator ShootRepeatily()
     {
-        Debug.Log("Fuego");
         Shoot();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(intervalShoot);
         if (target == null)
             shooting = false;
         else

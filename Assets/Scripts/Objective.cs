@@ -10,6 +10,5 @@ public class Objective : MonoBehaviour
     {
         if (health <= 0)
             Debug.Log("F");
-        Debug.Log(health);
     }
 }

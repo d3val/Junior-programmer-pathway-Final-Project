@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public int health;
+    public int health = 10;
     public int damage = 10;
     public float speed = 2;
     private NavMeshAgent m_agent;
-    public bool attacking = false;
+    private bool attacking = false;
     protected Objective m_tarjet;
 
     protected void Awake()
@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        Die();
         ObjectiveInRange();
     }
 
@@ -55,6 +56,14 @@ public class Enemy : MonoBehaviour
         m_agent.SetDestination(destination);
     }
 
+    protected void Die()
+    {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     IEnumerator AttackRepeatily()
     {
         Attack();
@@ -65,5 +74,15 @@ public class Enemy : MonoBehaviour
         else
             attacking = false;
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Projectile"))
+        {
+            Proyectile projectile = other.GetComponent<Proyectile>();
+            health -= projectile.damage;
+            Destroy(other.gameObject);
+        }
     }
 }
