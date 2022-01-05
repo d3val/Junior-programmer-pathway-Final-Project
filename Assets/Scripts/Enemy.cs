@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    protected int m_health;
-    protected int m_damage;
-     protected float m_speed;
-    protected NavMeshAgent m_agent;
-    protected bool attacking = false;
+    public int health;
+    public int damage = 10;
+    public float speed = 2;
+    private NavMeshAgent m_agent;
+    public bool attacking = false;
     protected Objective m_tarjet;
 
     protected void Awake()
@@ -17,10 +17,11 @@ public class Enemy : MonoBehaviour
         m_tarjet = GameObject.Find("Objective").GetComponent<Objective>();
         m_agent = GetComponent<NavMeshAgent>();
 
+        SetNavMeshAgentValues();
         GoTo(m_tarjet.transform.position);
     }
 
-    protected void Update()
+    private void Update()
     {
         ObjectiveInRange();
     }
@@ -29,7 +30,7 @@ public class Enemy : MonoBehaviour
     {
         if (m_tarjet != null)
         {
-            m_tarjet.health -= m_damage;
+            m_tarjet.health -= damage;
         }
     }
 
@@ -45,7 +46,7 @@ public class Enemy : MonoBehaviour
 
     protected void SetNavMeshAgentValues()
     {
-        m_agent.speed = m_speed;
+        m_agent.speed = speed;
 
     }
 
