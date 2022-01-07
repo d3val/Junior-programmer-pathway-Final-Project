@@ -16,6 +16,8 @@ public class Spawner : MonoBehaviour
         {
             spawnPosition = hit.point;
         }
-        Instantiate(prefab, spawnPosition, Quaternion.identity);
+
+        if(hit.collider != null)
+            Instantiate(prefab, spawnPosition, Quaternion.identity);
     }
 }

@@ -10,8 +10,9 @@ public class Unit : MonoBehaviour
     public GameObject projectile;
     private bool shooting = false;
 
-    private void Start()
+    private void Awake()
     {
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
     protected void Shoot()

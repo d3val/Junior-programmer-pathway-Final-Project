@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UIMainManager : MonoBehaviour
-{
+{/*
     public GameObject unitPrefab;
 
     // Update is called once per frame
@@ -14,4 +14,6 @@ public class UIMainManager : MonoBehaviour
             Spawner.SpawnWithRaycast(unitPrefab);
         }
     }
+    */
+    
 }
