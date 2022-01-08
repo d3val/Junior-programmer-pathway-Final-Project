@@ -6,6 +6,11 @@ public class Objective : MonoBehaviour
 {
     public int health = 30;
 
+    private void Awake()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+    }
+
     private void Update()
     {
         if (health <= 0)

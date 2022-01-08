@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UIMainManager : MonoBehaviour
-{/*
-    public GameObject unitPrefab;
+{
+    static Vector3 worldPosition;
 
-    // Update is called once per frame
-    void Update()
+    public static void SetPositionInWorld(GameObject gameObject)
     {
-        if (Input.GetMouseButtonDown(0))
+
+        Ray ray;
+        RaycastHit hit;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 100))
         {
-            Spawner.SpawnWithRaycast(unitPrefab);
+            worldPosition = hit.point;
+        }
+
+        if(hit.collider != null)
+        {
+            gameObject.transform.position = worldPosition;
         }
     }
-    */
     
 }
