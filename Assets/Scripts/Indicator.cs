@@ -18,13 +18,20 @@ public class Indicator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        buildEnable = false;
-        meshRenderer.material = disableMaterial;
+        if (other.CompareTag("Building"))
+        {
+            buildEnable = false;
+            meshRenderer.material = disableMaterial;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        buildEnable = true;
-        meshRenderer.material = enableMaterial;
+        if (other.CompareTag("Building"))
+        {
+
+            buildEnable = true;
+            meshRenderer.material = enableMaterial;
+        }
     }
 }

@@ -51,6 +51,17 @@ public class Unit : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (target == other.GetComponent<Enemy>())
+            {
+                target = null;
+            }
+        }
+    }
+
     IEnumerator ShootRepeatily()
     {
         Shoot();
