@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class Indicator : MonoBehaviour
 {
-    public bool buildEnable = true;
+    public bool enableBuild = true;
 
     public Material enableMaterial;
     public Material disableMaterial;
-    private MeshRenderer meshRenderer;
+    private MeshRenderer[] meshRenderers;
 
     private void Awake()
     {
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        meshRenderer = GetComponent<MeshRenderer>();
+        //meshRenderers = GetComponent<MeshRenderer>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Building"))
         {
-            buildEnable = false;
-            meshRenderer.material = disableMaterial;
+            DisableBuild();
+        }
+    }
+
+    public void DisableBuild()
+    {
+        enableBuild = false;
+
+        foreach (MeshRenderer render in meshRenderers)
+        {
+            render.material = disableMaterial;
+
         }
     }
 
@@ -29,9 +40,17 @@ public class Indicator : MonoBehaviour
     {
         if (other.CompareTag("Building"))
         {
+            EnableBuild();
+        }
+    }
 
-            buildEnable = true;
-            meshRenderer.material = enableMaterial;
+    public void EnableBuild()
+    {
+        enableBuild = true;
+        foreach (MeshRenderer render in meshRenderers)
+        {
+            render.material = enableMaterial;
+
         }
     }
 }

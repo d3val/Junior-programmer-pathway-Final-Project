@@ -7,9 +7,16 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 {
     public GameObject unitPrefab;
     public GameObject unitIndicator;
+    Indicator indicatorData;
+
+    private void Awake()
+    {
+        indicatorData = unitIndicator.GetComponent<Indicator>();
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        indicatorData.EnableBuild();
         Debug.Log("Le pique");
     }
 
@@ -21,8 +28,12 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("Deje de arratrar");
-        Spawner.SpawnWithRaycast(unitPrefab);
+        if (indicatorData.enableBuild)
+        {
+            Debug.Log("Deje de arratrar");
+            Spawner.SpawnWithRaycast(unitPrefab);
+            unitIndicator.SetActive(false);
+        }
         unitIndicator.SetActive(false);
     }
 
