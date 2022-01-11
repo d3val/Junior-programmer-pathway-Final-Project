@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     
     static Vector3 spawnPosition;
 
+    // Spawns a GameObject using a raycast that starts from the main camera and aims to the mouse position.
    public static void SpawnWithRaycast(GameObject prefab)
     {
         Ray ray;

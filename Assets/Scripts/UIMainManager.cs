@@ -6,6 +6,7 @@ public class UIMainManager : MonoBehaviour
 {
     static Vector3 worldPosition;
 
+    // Set a gameObject's position in the world game depending on the mouse position.
     public static void SetPositionInWorld(GameObject gameObject)
     {
 

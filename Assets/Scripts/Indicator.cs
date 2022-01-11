@@ -14,43 +14,41 @@ public class Indicator : MonoBehaviour
     {
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        //meshRenderers = GetComponent<MeshRenderer>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Building"))
+        if (other.CompareTag("Building") || other.CompareTag("Enemy"))
         {
             DisableBuild();
         }
     }
 
+    // Change the current material and the state enableBuild to false
     public void DisableBuild()
     {
         enableBuild = false;
-
         foreach (MeshRenderer render in meshRenderers)
         {
             render.material = disableMaterial;
-
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Building"))
+        if (other.CompareTag("Building") || other.CompareTag("Enemy"))
         {
             EnableBuild();
         }
     }
 
+    // Change the current material and the state enableBuild to true
     public void EnableBuild()
     {
         enableBuild = true;
         foreach (MeshRenderer render in meshRenderers)
         {
             render.material = enableMaterial;
-
         }
     }
 }

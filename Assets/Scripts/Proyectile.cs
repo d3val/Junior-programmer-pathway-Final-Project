@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Proyectile : MonoBehaviour
 {
-    private float lifeTime = 5.0f;
+    protected float lifeTime = 5.0f;
     public float speed = 10;
     public int damage = 2;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -26,6 +20,5 @@ public class Proyectile : MonoBehaviour
     private void MoveForward()
     {
         transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward, speed * Time.deltaTime);
-
     }
 }

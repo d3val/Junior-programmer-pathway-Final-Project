@@ -17,13 +17,12 @@ public class Unit : MonoBehaviour
 
     protected void Shoot()
     {
-        AimTarget();
-
         Instantiate(projectile, transform.position, transform.rotation);
     }
 
     private void Update()
     {
+        AimTarget();
         if (target != null && !shooting)
         {
             StartCoroutine(ShootRepeatily());

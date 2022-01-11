@@ -18,7 +18,8 @@ public class Enemy : MonoBehaviour
         m_agent = GetComponent<NavMeshAgent>();
 
         SetNavMeshAgentValues();
-        GoTo(m_tarjet.transform.position);
+        GoTo(m_tarjet);
+        Debug.Log(gameObject.name);
     }
 
     private void Update()
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // Check if the enemy is near to the objective
     protected void ObjectiveInRange()
     {
         float distance = Vector3.Distance(m_tarjet.transform.position, transform.position);
@@ -48,14 +50,20 @@ public class Enemy : MonoBehaviour
     protected void SetNavMeshAgentValues()
     {
         m_agent.speed = speed;
-
     }
 
-    protected void GoTo(Vector3 destination)
+    public virtual void GoTo(Vector3 destination)
     {
         m_agent.SetDestination(destination);
     }
 
+    public virtual void GoTo(Objective objective)
+    {
+        m_agent.SetDestination(objective.transform.position);
+        m_agent.speed = speed;
+    }
+
+    // Check the current enemy life.
     protected void Die()
     {
         if (health <= 0)
@@ -64,6 +72,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected virtual void Stop()
+    {
+        m_agent.speed = 0;
+    }
+
+    // Corroutine for attack repeatily by time intervals
     IEnumerator AttackRepeatily()
     {
         Attack();
