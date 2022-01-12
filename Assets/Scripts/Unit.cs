@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
-    protected void Shoot()
+    protected virtual void Shoot()
     {
         Instantiate(projectile, transform.position, transform.rotation);
     }
