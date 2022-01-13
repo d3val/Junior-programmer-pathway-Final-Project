@@ -5,10 +5,10 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
 
-    private Enemy target;
+    protected Enemy target;
     public float intervalShoot = 0.5f;
     public GameObject projectile;
-    private bool shooting = false;
+    protected bool isShooting = false;
 
     private void Awake()
     {
@@ -20,17 +20,17 @@ public class Unit : MonoBehaviour
         Instantiate(projectile, transform.position, transform.rotation);
     }
 
-    private void Update()
+    private  void Update()
     {
         AimTarget();
-        if (target != null && !shooting)
+        if (target != null && !isShooting)
         {
             StartCoroutine(ShootRepeatily());
-            shooting = true;
+            isShooting = true;
         }
     }
 
-    private void AimTarget()
+    protected void AimTarget()
     {
         if (target != null)
         {
@@ -61,12 +61,12 @@ public class Unit : MonoBehaviour
         }
     }
 
-    IEnumerator ShootRepeatily()
+    protected virtual IEnumerator ShootRepeatily()
     {
         Shoot();
         yield return new WaitForSeconds(intervalShoot);
         if (target == null)
-            shooting = false;
+            isShooting = false;
         else
             StartCoroutine(ShootRepeatily());
     }
