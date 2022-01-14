@@ -4,11 +4,44 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    
-    static Vector3 spawnPosition;
+    [SerializeField] List<GameObject> enemies;
+
+    public static Spawner spawnManager;
+
+    private Vector3 spawnPosition;
+
+    public int waves;
+    [SerializeField] float timeBetweenWaves;
+
+    private void Awake()
+    {
+        if (spawnManager == null)
+        {
+            spawnManager = this;
+        }
+        else
+            Destroy(gameObject);
+
+        StartCoroutine(SpawnContinuousWaves(waves, timeBetweenWaves));
+    }
+
+  /*  private Vector3 GetRandomPosition()
+    {
+        Vector3 position;
+
+        return position;
+    }*/
+
+    public void SpawnWave()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            Instantiate(enemy);
+        }
+    }
 
     // Spawns a GameObject using a raycast that starts from the main camera and aims to the mouse position.
-   public static void SpawnWithRaycast(GameObject prefab)
+    public void SpawnWithRaycast(GameObject prefab)
     {
         Ray ray;
         RaycastHit hit;
@@ -18,7 +51,17 @@ public class Spawner : MonoBehaviour
             spawnPosition = hit.point;
         }
 
-        if(hit.collider != null)
+        if (hit.collider != null)
             Instantiate(prefab, spawnPosition, Quaternion.identity);
     }
+
+    IEnumerator SpawnContinuousWaves(int wavesCantity, float time)
+    {
+        for (int i = 0; i < wavesCantity; i++)
+        {
+            SpawnWave();
+            yield return new WaitForSeconds(time);
+        }
+    }
+
 }

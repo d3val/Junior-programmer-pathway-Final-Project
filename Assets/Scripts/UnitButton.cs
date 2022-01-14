@@ -17,12 +17,10 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         indicatorData.EnableBuild();
-        Debug.Log("Le pique");
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Toi arrastrando");
         UIMainManager.SetPositionInWorld(unitIndicator);
     }
 
@@ -30,8 +28,7 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     {
         if (indicatorData.enableBuild)
         {
-            Debug.Log("Deje de arratrar");
-            Spawner.SpawnWithRaycast(unitPrefab);
+            Spawner.spawnManager.SpawnWithRaycast(unitPrefab);
             unitIndicator.SetActive(false);
         }
         unitIndicator.SetActive(false);
@@ -40,6 +37,5 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     public void OnBeginDrag(PointerEventData eventData)
     {
         unitIndicator.SetActive(true);
-        Debug.Log("Empece a arrastrar");
     }
 }

@@ -45,10 +45,13 @@ public class Indicator : MonoBehaviour
     // Change the current material and the state enableBuild to true
     public void EnableBuild()
     {
-        enableBuild = true;
-        foreach (MeshRenderer render in meshRenderers)
+        if (!enableBuild)
         {
-            render.material = enableMaterial;
+            foreach (MeshRenderer render in meshRenderers)
+            {
+                render.material = enableMaterial;
+            }
         }
+        enableBuild = true;
     }
 }
