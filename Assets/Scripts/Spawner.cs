@@ -13,6 +13,11 @@ public class Spawner : MonoBehaviour
     public int waves;
     [SerializeField] float timeBetweenWaves;
 
+    [SerializeField] float xBounds;
+    [SerializeField] float zBounds;
+
+    private int variance = 1;
+    
     private void Awake()
     {
         if (spawnManager == null)
@@ -25,18 +30,34 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnContinuousWaves(waves, timeBetweenWaves));
     }
 
-  /*  private Vector3 GetRandomPosition()
+    private Vector3 GetRandomPosition()
     {
-        Vector3 position;
+        float randomX;
+        float randomZ;
+
+        randomX = Random.Range(-xBounds, xBounds);
+        randomZ = Random.Range(-zBounds, zBounds);
+        if (randomX > -25 && randomX < 25)
+        {
+            randomZ = 25 * variance;
+            variance *= -1;
+        }
+        else if (randomZ > -25 && randomZ < 25)
+        {
+            randomX = -25 * variance;
+            variance *= -1;
+        }
+        Vector3 position = new Vector3(randomX, 0, randomZ);
 
         return position;
-    }*/
+    }
 
-    public void SpawnWave()
+    public void RandomSpawnWave()
     {
         foreach (GameObject enemy in enemies)
         {
-            Instantiate(enemy);
+            Vector3 randomSpawnPosition = GetRandomPosition();
+            Instantiate(enemy, randomSpawnPosition, enemy.transform.rotation);
         }
     }
 
@@ -59,7 +80,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < wavesCantity; i++)
         {
-            SpawnWave();
+            RandomSpawnWave();
             yield return new WaitForSeconds(time);
         }
     }
