@@ -19,7 +19,6 @@ public class Enemy : MonoBehaviour
 
         SetNavMeshAgentValues();
         GoTo(m_tarjet);
-        Debug.Log(gameObject.name);
     }
 
     private void Update()

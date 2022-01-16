@@ -17,7 +17,7 @@ public class Proyectile : MonoBehaviour
         MoveForward();
     }
 
-    private void MoveForward()
+    protected virtual void  MoveForward()
     {
         transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward, speed * Time.deltaTime);
     }
