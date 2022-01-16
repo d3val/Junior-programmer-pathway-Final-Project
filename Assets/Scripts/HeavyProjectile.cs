@@ -17,7 +17,6 @@ public class HeavyProjectile : Proyectile
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if ((other.CompareTag("Ground") || other.CompareTag("Enemy")) && !isExploding)
         {
             StartCoroutine(Explode());
@@ -37,7 +36,7 @@ public class HeavyProjectile : Proyectile
         while (explodeTime > 0)
         {
             explodeTime -= Time.deltaTime;
-            sphereCollider.radius *= 1.007f;
+            sphereCollider.radius *= 1.01f;
             yield return null;
         }
         Destroy(gameObject);

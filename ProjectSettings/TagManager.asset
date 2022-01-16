@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Building
   - Ground
+  - Heavy Projectile
   layers:
   - Default
   - TransparentFX

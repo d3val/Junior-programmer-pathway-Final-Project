@@ -348,7 +348,7 @@ MonoBehaviour:
   - {fileID: 5600952819351122469, guid: 53d8ff9b9bbfb104da0503c3df3740db, type: 3}
   - {fileID: 8299105479259251304, guid: 93fcb8575e750cd4c82f2934a143d792, type: 3}
   - {fileID: 8705789451414454182, guid: a36ecde1d26a65344ba8205d64da1ec5, type: 3}
-  waves: 10
+  waves: 3
   timeBetweenWaves: 1
   xBounds: 30
   zBounds: 30

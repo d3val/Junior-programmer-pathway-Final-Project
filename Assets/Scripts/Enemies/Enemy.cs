@@ -89,12 +89,24 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Projectile"))
+        if (other.CompareTag("Heavy Projectile"))
         {
             Proyectile projectile = other.GetComponent<Proyectile>();
-            health -= projectile.damage;
+
+            TakeDamage(projectile.damage);
+        }
+        else if (other.CompareTag("Projectile"))
+        {
+            Proyectile projectile = other.GetComponent<Proyectile>();
+
+            TakeDamage(projectile.damage);
             Destroy(other.gameObject);
         }
     }
