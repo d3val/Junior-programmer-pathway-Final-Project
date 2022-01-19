@@ -21,7 +21,7 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        UIMainManager.SetPositionInWorld(unitIndicator);
+        UIMainManager.instance.SetPositionInWorld(unitIndicator);
     }
 
     public void OnEndDrag(PointerEventData eventData)

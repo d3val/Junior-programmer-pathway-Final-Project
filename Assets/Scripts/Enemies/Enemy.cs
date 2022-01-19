@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent m_agent;
     private bool attacking = false;
     protected Objective m_tarjet;
+    private float distanceAttack = 1f;
 
     protected void Awake()
     {
@@ -31,7 +32,7 @@ public class Enemy : MonoBehaviour
     {
         if (m_tarjet != null)
         {
-            m_tarjet.health -= damage;
+            m_tarjet.TakeDamage(damage);
         }
     }
 
@@ -39,7 +40,7 @@ public class Enemy : MonoBehaviour
     protected void ObjectiveInRange()
     {
         float distance = Vector3.Distance(m_tarjet.transform.position, transform.position);
-        if (distance < 2.0f && !attacking)
+        if (distance < distanceAttack && !attacking)
         {
             attacking = true;
             StartCoroutine(AttackRepeatily());
@@ -82,7 +83,7 @@ public class Enemy : MonoBehaviour
         Attack();
         yield return new WaitForSeconds(3);
         float distance = Vector3.Distance(m_tarjet.transform.position, transform.position);
-        if (distance < 2.0f)
+        if (distance < distanceAttack)
             StartCoroutine(AttackRepeatily());
         else
             attacking = false;

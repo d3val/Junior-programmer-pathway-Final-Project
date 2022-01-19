@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class UIMainManager : MonoBehaviour
 {
-    static Vector3 worldPosition;
+
+    public static UIMainManager instance;
+
+    private Vector3 worldPosition;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
 
     // Set a gameObject's position in the world game depending on the mouse position.
-    public static void SetPositionInWorld(GameObject gameObject)
+    public void SetPositionInWorld(GameObject gameObject)
     {
 
         Ray ray;
@@ -19,10 +30,15 @@ public class UIMainManager : MonoBehaviour
             worldPosition = hit.point;
         }
 
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             gameObject.transform.position = worldPosition;
         }
     }
-    
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+    }
+
 }
