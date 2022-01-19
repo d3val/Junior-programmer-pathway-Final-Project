@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour
 {
-    public int health = 30;
+    public float health = 30;
 
     private void Awake()
     {

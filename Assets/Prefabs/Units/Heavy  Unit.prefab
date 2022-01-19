@@ -251,7 +251,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.5615435
+  m_Radius: 6.5
   m_Center: {x: 0, y: -0.55, z: 0}
 --- !u!114 &104761602465935510
 MonoBehaviour:
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03788ae6f195b244b560f6f8813acc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intervalShoot: 5
+  intervalShoot: 6
   projectile: {fileID: 3208459136461486996, guid: 85df53ae83b31e4428ecdf110623c6f7, type: 3}
 --- !u!1001 &8564916566069490412
 PrefabInstance:

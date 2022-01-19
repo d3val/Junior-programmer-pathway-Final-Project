@@ -148,9 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4881bd0b4d435b54eb49aa1282ca465a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 14
   damage: 10
-  speed: 3
-  stamina: 1
-  restTime: 3
-  currentStamina: 10
+  speed: 3.5
+  stamina: 6
+  restTime: 3.5

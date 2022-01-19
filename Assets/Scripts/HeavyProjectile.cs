@@ -36,7 +36,7 @@ public class HeavyProjectile : Proyectile
         while (explodeTime > 0)
         {
             explodeTime -= Time.deltaTime;
-            sphereCollider.radius *= 1.01f;
+            sphereCollider.radius *= 1.0055f;
             yield return null;
         }
         Destroy(gameObject);

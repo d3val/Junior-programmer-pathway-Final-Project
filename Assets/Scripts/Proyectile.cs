@@ -6,7 +6,7 @@ public class Proyectile : MonoBehaviour
 {
     protected float lifeTime = 5.0f;
     public float speed = 10;
-    public int damage = 2;
+    public float damage = 2;
 
     // Update is called once per frame
     void Update()

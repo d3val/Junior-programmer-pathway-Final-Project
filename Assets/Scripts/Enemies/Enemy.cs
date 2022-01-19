@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 10;
-    public int damage = 10;
+    public float health = 10;
+    public float damage = 10;
     public float speed = 2;
     private NavMeshAgent m_agent;
     private bool attacking = false;
@@ -90,6 +90,11 @@ public class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+
+    public void TakeDamage(float damage)
     {
         health -= damage;
     }
