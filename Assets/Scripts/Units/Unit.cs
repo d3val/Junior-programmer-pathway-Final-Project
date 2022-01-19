@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
     public float intervalShoot = 0.5f;
     public GameObject projectile;
     protected bool isShooting = false;
+    public ParticleSystem shootSpark;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class Unit : MonoBehaviour
 
     protected virtual void Shoot()
     {
+        shootSpark.Play();
         Instantiate(projectile, transform.position, transform.rotation);
     }
 

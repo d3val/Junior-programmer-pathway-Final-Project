@@ -5,9 +5,10 @@ using UnityEngine;
 public class HeavyProjectile : Proyectile
 {
     private SphereCollider sphereCollider;
-    [SerializeField] float explodeTime;
+    [SerializeField] float explosionTime;
     private MeshRenderer meshRenderer;
     private bool isExploding = false;
+    public ParticleSystem explosion;
 
     private void Awake()
     {
@@ -31,14 +32,11 @@ public class HeavyProjectile : Proyectile
 
     IEnumerator Explode()
     {
+        explosion.Play();
         isExploding = true;
         meshRenderer.enabled = false;
-        while (explodeTime > 0)
-        {
-            explodeTime -= Time.deltaTime;
-            sphereCollider.radius *= 1.0055f;
-            yield return null;
-        }
+        sphereCollider.radius *= 5f;
+        yield return new WaitForSeconds(explosionTime);
         Destroy(gameObject);
     }
 }

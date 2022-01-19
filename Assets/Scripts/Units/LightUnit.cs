@@ -7,6 +7,7 @@ public class LightUnit : Unit
     public float beforeHeatTime;
     public float heat;
     public bool isCooling = false;
+    [SerializeField] ParticleSystem smoke;
 
     private void Update()
     {
@@ -30,11 +31,13 @@ public class LightUnit : Unit
         {
             isCooling = false;
             heat = 0;
+            smoke.Stop();
         }
 
         if (heat >= beforeHeatTime)
         {
             isCooling = true;
+            smoke.Play();
         }
     }
 
