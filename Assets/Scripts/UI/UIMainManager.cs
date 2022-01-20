@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIMainManager : MonoBehaviour
 {
-
     public static UIMainManager instance;
 
     private Vector3 worldPosition;
+
+    [SerializeField] Text moneyCount;
+
+    public int money;
 
     private void Awake()
     {
@@ -39,6 +43,12 @@ public class UIMainManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
+    }
+
+    public void UpdateMoney(int n)
+    {
+        money += n;
+        moneyCount.text = money.ToString();
     }
 
 }

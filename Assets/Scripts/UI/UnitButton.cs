@@ -9,6 +9,8 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     public GameObject unitIndicator;
     Indicator indicatorData;
 
+    [SerializeField] int unitPrice;
+
     private void Awake()
     {
         indicatorData = unitIndicator.GetComponent<Indicator>();
@@ -16,7 +18,7 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        indicatorData.EnableBuild();
+            indicatorData.EnableBuild();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -26,16 +28,17 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (indicatorData.enableBuild)
+        if (indicatorData.enableBuild && UIMainManager.instance.money >= unitPrice)
         {
             Spawner.spawnManager.SpawnWithRaycast(unitPrefab);
-            unitIndicator.SetActive(false);
+            UIMainManager.instance.UpdateMoney(-unitPrice);
         }
         unitIndicator.SetActive(false);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        unitIndicator.SetActive(true);
+        if (UIMainManager.instance.money >= unitPrice)
+            unitIndicator.SetActive(true);
     }
 }

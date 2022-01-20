@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         m_tarjet = GameObject.Find("Objective").GetComponent<Objective>();
         m_agent = GetComponent<NavMeshAgent>();
+        CheckDifficulty();
 
         SetNavMeshAgentValues();
         GoTo(m_tarjet);
@@ -26,6 +27,17 @@ public class Enemy : MonoBehaviour
     {
         Die();
         ObjectiveInRange();
+    }
+
+    private void CheckDifficulty()
+    {
+        if (SettingsManager.instance != null)
+        {
+            if (SettingsManager.instance.difficulty == SettingsManager.Hard)
+                health *= 1.25f;
+            else if (SettingsManager.instance.difficulty == SettingsManager.Easy)
+                health /= 1.25f;
+        }
     }
 
     protected void Attack()

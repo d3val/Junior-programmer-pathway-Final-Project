@@ -16,8 +16,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] float xBounds;
     [SerializeField] float zBounds;
 
+    [SerializeField] GameObject coin;
+    float coinSpawnLimitX = 7.5f;
+    float coinSpawnLimitZ = 11f;
+    readonly float coinYPos = 10.5f;
+
     private int variance = 1;
-    
+
     private void Awake()
     {
         if (spawnManager == null)
@@ -28,6 +33,18 @@ public class Spawner : MonoBehaviour
             Destroy(gameObject);
 
         StartCoroutine(SpawnContinuousWaves(waves, timeBetweenWaves));
+        InvokeRepeating("RandomSpawnCoin", 3, 6);
+    }
+
+    private void RandomSpawnCoin()
+    {
+
+        float randomX = Random.Range(-coinSpawnLimitX, coinSpawnLimitX);
+        float randomZ = Random.Range(-coinSpawnLimitZ, coinSpawnLimitZ);
+        Vector3 spawnPosition = new Vector3(randomX, coinYPos, randomZ);
+
+        Instantiate(coin, spawnPosition, coin.transform.rotation);
+
     }
 
     private Vector3 GetRandomPosition()
