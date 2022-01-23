@@ -5,7 +5,7 @@ using UnityEngine;
 public class Proyectile : MonoBehaviour
 {
     protected float lifeTime = 5.0f;
-    public float speed = 10;
+    [SerializeField] protected float speed = 10;
     public float damage = 2;
 
     // Update is called once per frame
@@ -17,7 +17,8 @@ public class Proyectile : MonoBehaviour
         MoveForward();
     }
 
-    protected virtual void  MoveForward()
+    // ABSTRACTION
+    protected virtual void MoveForward()
     {
         transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward, speed * Time.deltaTime);
     }

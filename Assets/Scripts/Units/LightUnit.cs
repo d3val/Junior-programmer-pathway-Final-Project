@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class LightUnit : Unit
 {
-    public float beforeHeatTime;
-    public float heat;
-    public bool isCooling = false;
+    private readonly float beforeHeatTime = 5;
+    private float heat;
+    private bool isCooling = false;
     [SerializeField] ParticleSystem smoke;
 
     private void Update()
@@ -20,6 +21,7 @@ public class LightUnit : Unit
         }
     }
 
+    // Checks if the heat level and controls isShooting state
     private void CheckHeat()
     {
         if (isShooting)
@@ -41,6 +43,8 @@ public class LightUnit : Unit
         }
     }
 
+    // POLYMORPHISM
+    // Diferent shoot behaviour depending on a heat level;
     protected override IEnumerator ShootRepeatily()
     {
         Shoot();

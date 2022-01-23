@@ -6,8 +6,8 @@ public class Indicator : MonoBehaviour
 {
     public bool enableBuild = true;
 
-    public Material enableMaterial;
-    public Material disableMaterial;
+    [SerializeField] Material enableMaterial;
+    [SerializeField] Material disableMaterial;
     private MeshRenderer[] meshRenderers;
 
     private void Awake()

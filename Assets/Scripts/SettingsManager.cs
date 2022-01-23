@@ -8,7 +8,7 @@ public class SettingsManager : MonoBehaviour
     public const int NORMAL = 1;
     public const int EASY = 0;
 
-    public static SettingsManager instance;
+    public static SettingsManager instance { get; private set; }
 
     public float volume;
     public int difficulty;

@@ -5,21 +5,22 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] List<GameObject> enemies;
-
-    public static Spawner spawnManager;
+    // ENCAPSULATION
+    public static Spawner spawnManager { get; private set; }
 
     private Vector3 spawnPosition;
 
+    // ENCAPSULATION
     public int waves;
     [SerializeField] float timeBetweenWaves;
     float coinSpawnTime = 20;
 
-    [SerializeField] float xBounds;
-    [SerializeField] float zBounds;
+    readonly float xBounds = 30;
+    readonly float zBounds = 30;
 
     [SerializeField] GameObject coin;
-    float coinSpawnLimitX = 7.5f;
-    float coinSpawnLimitZ = 11f;
+    readonly float coinSpawnLimitX = 7.5f;
+    readonly float coinSpawnLimitZ = 11f;
     readonly float coinYPos = 10.5f;
 
     private int spawnPosVariance = 1;
@@ -28,7 +29,7 @@ public class Spawner : MonoBehaviour
     private int fstEnemies = 1;
     private int hvyEnemies = 0;
 
-    private int enemiesIncreaseRate = 1;
+    readonly int enemiesIncreaseRate = 1;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class Spawner : MonoBehaviour
         InvokeRepeating("RandomSpawnCoin", 5, coinSpawnTime);
     }
 
+    // Set parameter's values depending on the current difficultty
     private void SetDifficulty()
     {
         if (SettingsManager.instance != null)
@@ -59,7 +61,7 @@ public class Spawner : MonoBehaviour
                     break;
                 case SettingsManager.EASY:
                     RandomSpawnCoin(3);
-                    timeBetweenWaves *= 1.25f;
+                    timeBetweenWaves *= 1.15f;
                     coinSpawnTime *= 0.75f;
                     stdEnemies = 2;
                     fstEnemies = 0;
@@ -72,6 +74,8 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
+    // Spawn a coin randomly
     private void RandomSpawnCoin()
     {
 
@@ -82,6 +86,8 @@ public class Spawner : MonoBehaviour
         Instantiate(coin, spawnPosition, coin.transform.rotation);
     }
 
+    // ABSTRACTION
+    // Spawn n coins randomly
     private void RandomSpawnCoin(int nCoins)
     {
         float randomZ;
@@ -97,6 +103,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    // Returns a random position
     private Vector3 GetRandomPosition()
     {
         float randomX;
@@ -175,7 +182,7 @@ public class Spawner : MonoBehaviour
         {
             RandomSpawnWave();
             yield return new WaitForSeconds(time);
-            UIMainManager.instance.UpdateWaveProgress();
+            UIMainManager.Instance.UpdateWaveProgress();
         }
         IncreaseEnemiesSpawn();
     }

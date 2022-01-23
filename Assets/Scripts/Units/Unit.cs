@@ -6,23 +6,25 @@ public class Unit : MonoBehaviour
 {
 
     protected Enemy target;
-    public float intervalShoot = 0.5f;
-    public GameObject projectile;
+    [SerializeField] protected float intervalShoot = 0.5f;
+    [SerializeField] GameObject projectile;
     protected bool isShooting = false;
-    public ParticleSystem shootSpark;
+    [SerializeField] protected ParticleSystem shootSpark;
 
     private void Awake()
     {
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
+    // ABSTRACTION
+    // Shoot an specified projectile (gameObject)
     protected virtual void Shoot()
     {
         shootSpark.Play();
         Instantiate(projectile, transform.position, transform.rotation);
     }
 
-    private  void Update()
+    private void Update()
     {
         AimTarget();
         if (target != null && !isShooting)
@@ -32,6 +34,8 @@ public class Unit : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
+    // Look to the tarjet's position
     protected void AimTarget()
     {
         if (target != null)
@@ -63,6 +67,7 @@ public class Unit : MonoBehaviour
         }
     }
 
+    // While there is a tarjet, shoot it
     protected virtual IEnumerator ShootRepeatily()
     {
         Shoot();

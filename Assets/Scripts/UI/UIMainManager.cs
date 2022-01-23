@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class UIMainManager : MonoBehaviour
 {
-    public static UIMainManager instance;
+    // ENCAPSULATION
+    public static UIMainManager Instance { get; private set; }
 
     private Vector3 worldPosition;
 
     [SerializeField] Text moneyCount;
-    public int money;
+    public int Money { get; private set; }
 
     [SerializeField] Slider waveProgress;
     [SerializeField] Text waveCounter;
@@ -26,8 +27,8 @@ public class UIMainManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
             Destroy(this);
 
@@ -56,6 +57,8 @@ public class UIMainManager : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
+    // Shows the game over panel
     public void GameOver()
     {
         Time.timeScale = 0;
@@ -74,8 +77,8 @@ public class UIMainManager : MonoBehaviour
 
     public void UpdateMoney(int n)
     {
-        money += n;
-        moneyCount.text = money.ToString();
+        Money += n;
+        moneyCount.text = Money.ToString();
     }
 
     private void UpdateWaveCounter()
@@ -88,6 +91,8 @@ public class UIMainManager : MonoBehaviour
         waveProgress.maxValue = nWaves;
     }
 
+    // Before start a new wave, wait until there is no 
+    // more enemies.
     public void CheckFinalWave()
     {
         if (waveProgress.value == waveProgress.maxValue)
@@ -105,6 +110,7 @@ public class UIMainManager : MonoBehaviour
         StartNewWave();
     }
 
+    // Starts a new wave of enemies
     private void StartNewWave()
     {
         UpdateWaveCounter();
@@ -113,12 +119,14 @@ public class UIMainManager : MonoBehaviour
         spawner.StartSpawningEnemies();
     }
 
+    // ABSTRACTION
     public void PuseGame()
     {
         Time.timeScale = 0;
         pausePanel.SetActive(true);
     }
 
+    // ABSTRACTION
     public void ResumeGame()
     {
         pausePanel.SetActive(false);
@@ -126,12 +134,14 @@ public class UIMainManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    // ABSTRACTION
     public void BackToMenu()
     {
         ResumeGame();
         SceneManager.LoadScene(0);
     }
 
+    // ABSTRACTION
     public void ReloadScene()
     {
         ResumeGame();

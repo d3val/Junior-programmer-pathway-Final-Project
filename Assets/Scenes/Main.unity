@@ -742,8 +742,6 @@ MonoBehaviour:
   - {fileID: 8705789451414454182, guid: a36ecde1d26a65344ba8205d64da1ec5, type: 3}
   waves: 5
   timeBetweenWaves: 18
-  xBounds: 30
-  zBounds: 30
   coin: {fileID: 8184559872727274921, guid: d9990c64c6086194b96be5a988d33e03, type: 3}
 --- !u!4 &396803558
 Transform:
@@ -792,7 +790,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyCount: {fileID: 1028142810}
-  money: 0
   waveProgress: {fileID: 314410009}
   waveCounter: {fileID: 1066332444}
   enemiesInGame: 0

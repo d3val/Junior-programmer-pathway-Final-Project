@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Objective : MonoBehaviour
 {
-    [SerializeField] float health;
+    float health = 500;
     [SerializeField] Slider healthBar;
     private bool gameOver = false;
     [SerializeField] ParticleSystem gameOverExplosion;
@@ -24,12 +24,14 @@ public class Objective : MonoBehaviour
         CheckHealth();
     }
 
+    // ABSTRACTION
     public void TakeDamage(float damage)
     {
         health -= damage;
         healthBar.value = health;
     }
 
+    // ABSTRACTION
     private void CheckHealth()
     {
         if (health <= 0 && !gameOver)
@@ -39,11 +41,12 @@ public class Objective : MonoBehaviour
         }
     }
 
+    // Wait a few seconds before show game over panel
     IEnumerator GameOver()
     {
         gameOverExplosion.Play();
         render.enabled = false;
         yield return new WaitForSeconds(2);
-        UIMainManager.instance.GameOver();
+        UIMainManager.Instance.GameOver();
     }
 }

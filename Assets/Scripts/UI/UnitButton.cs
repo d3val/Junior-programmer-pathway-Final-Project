@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public GameObject unitPrefab;
-    public GameObject unitIndicator;
+    [SerializeField] GameObject unitPrefab;
+    [SerializeField] GameObject unitIndicator;
     Indicator indicatorData;
 
     [SerializeField] int unitPrice;
@@ -23,22 +23,22 @@ public class UnitButton : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        UIMainManager.instance.SetPositionInWorld(unitIndicator);
+        UIMainManager.Instance.SetPositionInWorld(unitIndicator);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (indicatorData.enableBuild && UIMainManager.instance.money >= unitPrice)
+        if (indicatorData.enableBuild && UIMainManager.Instance.Money >= unitPrice)
         {
             Spawner.spawnManager.SpawnWithRaycast(unitPrefab);
-            UIMainManager.instance.UpdateMoney(-unitPrice);
+            UIMainManager.Instance.UpdateMoney(-unitPrice);
         }
         unitIndicator.SetActive(false);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (UIMainManager.instance.money >= unitPrice)
+        if (UIMainManager.Instance.Money >= unitPrice)
             unitIndicator.SetActive(true);
     }
 }

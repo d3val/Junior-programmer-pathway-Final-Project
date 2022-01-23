@@ -67,7 +67,7 @@ public class SimpleCollectibleScript : MonoBehaviour
         if (CollectibleType == CollectibleTypes.Money)
         {
 
-            UIMainManager.instance.UpdateMoney(25);
+            UIMainManager.Instance.UpdateMoney(25);
         }
         if (CollectibleType == CollectibleTypes.Type2)
         {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class HeavyProjectile : Proyectile
 {
     private SphereCollider sphereCollider;
@@ -24,12 +25,14 @@ public class HeavyProjectile : Proyectile
         }
     }
 
+    // POLYMORPHISM
     protected override void MoveForward()
     {
         if (!isExploding)
             base.MoveForward();
     }
 
+    // Explodes and increses size collider before being destroyed
     IEnumerator Explode()
     {
         explosion.Play();

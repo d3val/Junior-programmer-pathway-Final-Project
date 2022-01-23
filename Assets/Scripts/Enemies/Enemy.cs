@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public float health = 10;
-    public float damage = 10;
-    public float speed = 2;
+    [SerializeField] protected float health = 10;
+    [SerializeField] protected float damage = 10;
+    [SerializeField] protected float speed = 2;
     [SerializeField] int reward = 1;
     private NavMeshAgent m_agent;
     private bool attacking = false;
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         m_agent = GetComponent<NavMeshAgent>();
         CheckDifficulty();
 
-        UIMainManager.instance.enemiesInGame++;
+        UIMainManager.Instance.enemiesInGame++;
         SetNavMeshAgentValues();
         GoTo(m_tarjet);
     }
@@ -82,8 +82,8 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
-            UIMainManager.instance.UpdateMoney(reward);
-            UIMainManager.instance.enemiesInGame--;
+            UIMainManager.Instance.UpdateMoney(reward);
+            UIMainManager.Instance.enemiesInGame--;
             Destroy(gameObject);
         }
     }
