@@ -11,7 +11,7 @@ public class SettingsManager : MonoBehaviour
     public static SettingsManager instance;
 
     public float volume;
-    public float difficulty;
+    public int difficulty;
 
     private void Awake()
     {
@@ -24,6 +24,7 @@ public class SettingsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        difficulty = NORMAL;
     }
 
 

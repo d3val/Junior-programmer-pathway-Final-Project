@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIMainManager : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class UIMainManager : MonoBehaviour
     public int enemiesInGame = 0;
 
     private Spawner spawner;
+
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject gameOverPanel;
 
     private void Awake()
     {
@@ -55,6 +59,7 @@ public class UIMainManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
+        gameOverPanel.SetActive(true);
     }
 
     public void UpdateWaveProgress()
@@ -107,4 +112,30 @@ public class UIMainManager : MonoBehaviour
         UpdateWaveProgress(Mathf.RoundToInt(waveProgress.minValue));
         spawner.StartSpawningEnemies();
     }
+
+    public void PuseGame()
+    {
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void BackToMenu()
+    {
+        ResumeGame();
+        SceneManager.LoadScene(0);
+    }
+
+    public void ReloadScene()
+    {
+        ResumeGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }

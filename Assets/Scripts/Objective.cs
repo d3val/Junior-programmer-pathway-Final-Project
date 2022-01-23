@@ -7,9 +7,13 @@ public class Objective : MonoBehaviour
 {
     [SerializeField] float health;
     [SerializeField] Slider healthBar;
+    private bool gameOver = false;
+    [SerializeField] ParticleSystem gameOverExplosion;
+    private MeshRenderer render;
 
     private void Awake()
     {
+        render = GetComponent<MeshRenderer>();
         healthBar.maxValue = health;
         healthBar.value = health;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
@@ -28,7 +32,18 @@ public class Objective : MonoBehaviour
 
     private void CheckHealth()
     {
-        if (health <= 0)
-            UIMainManager.instance.GameOver();
+        if (health <= 0 && !gameOver)
+        {
+            gameOver = true;
+            StartCoroutine(GameOver());
+        }
+    }
+
+    IEnumerator GameOver()
+    {
+        gameOverExplosion.Play();
+        render.enabled = false;
+        yield return new WaitForSeconds(2);
+        UIMainManager.instance.GameOver();
     }
 }

@@ -18,6 +18,16 @@ public class UIMenu : MonoBehaviour
 #endif
     }
 
+    private void Awake()
+    {
+        LoadDifficulty();
+    }
+
+    private void LoadDifficulty()
+    {
+        diffifultyDropdown.value = SettingsManager.instance.difficulty;
+    }
+
     public void StartGame()
     {
         SetGameDifficulty();
