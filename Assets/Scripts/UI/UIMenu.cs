@@ -27,7 +27,6 @@ public class UIMenu : MonoBehaviour
     public void SetGameDifficulty()
     {
         SettingsManager.instance.difficulty = diffifultyDropdown.value;
-        Debug.Log($"La dificultad esta en: {SettingsManager.instance.difficulty}");
     }
 
 }

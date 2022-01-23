@@ -10,8 +10,15 @@ public class UIMainManager : MonoBehaviour
     private Vector3 worldPosition;
 
     [SerializeField] Text moneyCount;
-
     public int money;
+
+    [SerializeField] Slider waveProgress;
+    [SerializeField] Text waveCounter;
+    private int waveCount = 1;
+
+    public int enemiesInGame = 0;
+
+    private Spawner spawner;
 
     private void Awake()
     {
@@ -19,6 +26,11 @@ public class UIMainManager : MonoBehaviour
             instance = this;
         else
             Destroy(this);
+
+        spawner = GameObject.Find("Spawn Manager").GetComponent<Spawner>();
+        UpdateWaveCounter();
+        SetWaveProgressValues(spawner.waves);
+        StartNewWave();
     }
 
     // Set a gameObject's position in the world game depending on the mouse position.
@@ -45,10 +57,54 @@ public class UIMainManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    public void UpdateWaveProgress()
+    {
+        waveProgress.value++;
+    }
+
+    public void UpdateWaveProgress(int n)
+    {
+        waveProgress.value = n;
+    }
+
     public void UpdateMoney(int n)
     {
         money += n;
         moneyCount.text = money.ToString();
     }
 
+    private void UpdateWaveCounter()
+    {
+        waveCounter.text = waveCount.ToString();
+    }
+
+    public void SetWaveProgressValues(int nWaves)
+    {
+        waveProgress.maxValue = nWaves;
+    }
+
+    public void CheckFinalWave()
+    {
+        if (waveProgress.value == waveProgress.maxValue)
+        {
+            StartCoroutine(WaitForNoEnemies());
+        }
+    }
+
+    IEnumerator WaitForNoEnemies()
+    {
+        while (enemiesInGame > 0)
+        {
+            yield return new WaitForSeconds(1);
+        }
+        StartNewWave();
+    }
+
+    private void StartNewWave()
+    {
+        UpdateWaveCounter();
+        waveCount++;
+        UpdateWaveProgress(Mathf.RoundToInt(waveProgress.minValue));
+        spawner.StartSpawningEnemies();
+    }
 }

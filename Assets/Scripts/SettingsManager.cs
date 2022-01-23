@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
 {
-    public static readonly int Hard = 2;
-    public static readonly int Normal = 1;
-    public static readonly int Easy = 0;
+    public const int HARD = 2;
+    public const int NORMAL = 1;
+    public const int EASY = 0;
 
     public static SettingsManager instance;
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5600952819351122468}
   - component: {fileID: 5600952819351122479}
   - component: {fileID: 5600952819351122472}
-  - component: {fileID: 5600952819351122478}
+  - component: {fileID: -7036419910295540425}
   m_Layer: 0
   m_Name: Standard Enemy
   m_TagString: Enemy
@@ -135,7 +135,8 @@ MonoBehaviour:
   health: 20
   damage: 10
   speed: 2
---- !u!54 &5600952819351122478
+  reward: 1
+--- !u!54 &-7036419910295540425
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +148,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

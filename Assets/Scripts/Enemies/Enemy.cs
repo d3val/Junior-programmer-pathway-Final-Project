@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float health = 10;
     public float damage = 10;
     public float speed = 2;
+    [SerializeField] int reward = 1;
     private NavMeshAgent m_agent;
     private bool attacking = false;
     protected Objective m_tarjet;
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
         m_agent = GetComponent<NavMeshAgent>();
         CheckDifficulty();
 
+        UIMainManager.instance.enemiesInGame++;
         SetNavMeshAgentValues();
         GoTo(m_tarjet);
     }
@@ -33,9 +35,9 @@ public class Enemy : MonoBehaviour
     {
         if (SettingsManager.instance != null)
         {
-            if (SettingsManager.instance.difficulty == SettingsManager.Hard)
+            if (SettingsManager.instance.difficulty == SettingsManager.HARD)
                 health *= 1.25f;
-            else if (SettingsManager.instance.difficulty == SettingsManager.Easy)
+            else if (SettingsManager.instance.difficulty == SettingsManager.EASY)
                 health /= 1.25f;
         }
     }
@@ -80,6 +82,8 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
+            UIMainManager.instance.UpdateMoney(reward);
+            UIMainManager.instance.enemiesInGame--;
             Destroy(gameObject);
         }
     }
